@@ -1,0 +1,33 @@
+---
+name: storage_dirver
+
+description: "The storage_driver is a voldriver: nfs... support storage volume driver"
+
+templates:
+  storage_volume_driver_ctl.erb: /bin/storage_volume_driver_ctl
+
+packages:
+  - pid_utils
+  - storage_volume_driver
+
+properties:
+  storage_volume_driver.debugAddr:
+    description: "Storage volume driver debug address"
+  storage_volume_driver.driversPath:
+    description: "Storage driver path where the voldriver installed (default '/var/vcap/data/voldrivers')"
+    default: "/var/vcap/data/voldrivers"
+  storage_volume_driver.listenAddress:
+    description: "host:port nfsdriver manager listen address"
+    default: "0.0.0.0:5566"
+  storage_volume_driver.local:
+    description: "fake local mount dir,local driver only use it"
+    default: "/tmp/local"
+  storage_volume_driver.logLevel:
+    description: "log level: debug, info, error or fatal"
+    default: "info"
+  storage_volume_driver.registryDriver:
+    description: "support storage backend driver,now available drivers are nfs,local..."
+    default: "nfs"
+  storage_volume_driver.transport:
+    description: "tcp or unix transport protocol,default tcp"
+    default: "tcp"

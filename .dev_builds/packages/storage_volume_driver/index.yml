@@ -1,0 +1,9 @@
+---
+builds:
+  79a7485eb568956e045ff60d4371ac0867a6d4cd:
+    version: 79a7485eb568956e045ff60d4371ac0867a6d4cd
+    sha1: 163d14183484fee08c6750960c86ab6bc04bc5e4
+  32ac2293dc5de440860f7bef9236f89d29cb6ed0:
+    version: 32ac2293dc5de440860f7bef9236f89d29cb6ed0
+    sha1: fdda1face0a3b3dcb525dca47d1879b24b60c70e
+format-version: '2'

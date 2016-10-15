@@ -1,0 +1,33 @@
+---
+packages:
+- name: debian_nfs_server
+  version: b9635ceaf452b16239b9b6a356cdc9d1c6fa80f5
+  fingerprint: b9635ceaf452b16239b9b6a356cdc9d1c6fa80f5
+  sha1: ceb94d24b8cdf084849ed7fe5a0e7b9e5231dc3d
+  dependencies: []
+- name: common
+  version: 8c2d3900a9cfba4d0c3ebdb2dbcf4b790531c09f
+  fingerprint: 8c2d3900a9cfba4d0c3ebdb2dbcf4b790531c09f
+  sha1: 5a3e3c0a55ab27ebf0427a863a8b022e64d9cfca
+  dependencies: []
+jobs:
+- name: nfs_mounter
+  version: e597e616003791ea243cf1d49880a90088c1129e
+  fingerprint: e597e616003791ea243cf1d49880a90088c1129e
+  sha1: 6aea9429953a41eca2155ab2d663a9d3e51b3ed7
+- name: storage_dirver
+  version: 0365f5fb0099b325760d47c0fc72b42de7c29d91
+  fingerprint: 0365f5fb0099b325760d47c0fc72b42de7c29d91
+  sha1: e28e62124129829c76d55a1f16368ed672ed788c
+- name: debian_nfs_server
+  version: 13099c08680423cb750cfa3f1868277d7f9d8631
+  fingerprint: 13099c08680423cb750cfa3f1868277d7f9d8631
+  sha1: 79d0cf45d4feed0d8decfbaca67e5286e8e1c58e
+- name: nfs_broker
+  version: 705b79de876e71ee67786693b4d4ee23723373bf
+  fingerprint: 705b79de876e71ee67786693b4d4ee23723373bf
+  sha1: 8df0de03f8e2d9b211010e5b3d8ecf31418f63b7
+commit_hash: '00000000'
+uncommitted_changes: false
+name: storage-volume-bosh
+version: 0+dev.2

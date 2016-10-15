@@ -1,0 +1,33 @@
+---
+debian_nfs_server/nfs-kernel-server_1.2.0-4ubuntu4.2_amd64.deb:
+  object_id: 537849bc-9406-49e1-8b10-886ca6d05016
+  sha: 2ec33a5319657a881b7b1cd8a9e1adf6a8312318
+  size: 170310
+common/utils.sh:
+  object_id: b9a0e645-f8aa-43af-8247-631f3216f79b
+  sha: d9e7d1457b01e568457ecb46ee7bbaa4220a8449
+  size: 3329
+storage_volume_driver/storagedriver:
+  object_id: 172ade47-67e1-499c-9d4a-07f532ef869a
+  sha: c652969a07321ea25016af5c686a46814adcde3b
+  size: 8654988
+nfsbroker/nfsbroker:
+  object_id: b3f10514-2be1-48a9-abb9-3dd52801a6b0
+  sha: 09e2a7221bfac7c5bfd023aad441bf176973b85b
+  size: 9019798
+nfsbroker/cf:
+  object_id: 69e0fc06-351c-43bb-bfe0-6126de7e56c4
+  sha: 7ca96253de61e0112a52a70dcd9694a3d789664c
+  size: 21760064
+pid_utils/pid_utils.sh:
+  object_id: 3a1c9fa5-ca25-4ee2-aab0-40d1fa836a4d
+  sha: 335f9e91bec0d2abd3f4edb3a39c2824953b9f55
+  size: 4037
+cf/cf:
+  object_id: 3568e18d-d8b7-404b-a9a5-56755c61df40
+  sha: 7ca96253de61e0112a52a70dcd9694a3d789664c
+  size: 21760064
+jq/jq:
+  object_id: 0d906e7e-0961-4b9d-ac08-a55af24a7544
+  sha: ec498ea174ab4e696d02016e2ad47fbdec2b3aa3
+  size: 3189344

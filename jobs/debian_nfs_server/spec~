@@ -1,0 +1,5 @@
+---
+name: debian_nfs_server
+templates:
+
+packages:

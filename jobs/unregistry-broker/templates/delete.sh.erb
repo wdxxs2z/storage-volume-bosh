@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -ex
+
+# redirect stderr to stdout
+exec 2>&1
+
+PACKAGES_DIR=/var/vcap/packages
+PATH=$PACKAGES_DIR/cf/bin:$PATH
+
+CF_ADMIN_USERNAME=<%= p("cf.admin_username") %>
+CF_ADMIN_PASSWORD=<%= p("cf.admin_password") %>
+CF_API_URL=<%= p("cf.system_api_url") %>
+
+BROKER_NAME=<%= p("nfs_volume_broker.name") %>
+
+function authenticate() {
+  cf api $CF_API_URL <% if p("cf.ha_proxy.skip_cert_verify") %>--skip-ssl-validation<% end %>
+  cf auth $CF_ADMIN_USERNAME $CF_ADMIN_PASSWORD
+}
+
+function deregister_service_broker() {
+  cf delete-service-broker $BROKER_NAME -f
+}
+
+authenticate
+deregister_service_broker

@@ -1,0 +1,5 @@
+check process storage_driver
+  with pidfile /var/vcap/sys/run/storage_driver/storage_driver.pid
+  start program "/var/vcap/jobs/storage_driver/bin/storage_volume_driver_ctl start"
+  stop program "/var/vcap/jobs/storage_driver/bin/storage_volume_driver_ctl stop"
+  group vcap

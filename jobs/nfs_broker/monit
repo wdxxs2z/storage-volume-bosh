@@ -1,0 +1,5 @@
+check process nfs_broker
+  with pidfile /var/vcap/sys/run/nfs_broker/nfs_broker.pid
+  start program "/var/vcap/jobs/nfs_broker/bin/nfs_volume_broker_ctl start"
+  stop program "/var/vcap/jobs/nfs_broker/bin/nfs_volume_broker_ctl stop"
+  group vcap

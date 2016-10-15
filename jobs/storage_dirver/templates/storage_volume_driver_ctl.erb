@@ -1,0 +1,58 @@
+#!/bin/bash
+
+export STORAGE_DRIVER_JOB_DIR=/var/vcap/jobs/storage_dirver
+
+RUN_DIR=/var/vcap/sys/run/storage_driver
+LOG_DIR=/var/vcap/sys/log/storage_driver
+
+export CONFIG_DIR=$STORAGE_DRIVER_JOB_DIR/config
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+PIDFILE=$RUN_DIR/storage_driver.pid
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "storage_driver"
+
+    mkdir -p $RUN_DIR
+    chown -R vcap:vcap $RUN_DIR
+
+    mkdir -p $LOG_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    DRIVERS_PATHS=<%= p("storage_volume_driver.driversPath") %>
+    mkdir -p $DRIVERS_PATH
+    chown vcap:vcap $DRIVERS_PATHS
+
+    ulimit -n 100000
+    
+    chmod +x /var/vcap/packages/storage_volume_driver/storagedriver
+    
+    exec chpst -u vcap:vcap /var/vcap/packages/storage_volume_driver/storagedriver \
+    -driversPath=${DRIVERS_PATHS} \
+    -listenAddress=<%= p("storage_volume_driver.listenAddress") %> \
+    -logLevel=<%= p("storage_volume_driver.logLevel") %> \
+    -registryDriver=<%= p("storage_volume_driver.registryDriver") %> \
+    -transport=<%= p("storage_volume_driver.transport") %> \
+    <% if_p("storage_volume_driver.debugAddr") do |value| %> \
+    -debugAddr=<%= value %> \
+    <% end %> \
+    <% if_p("storage_volume_driver.local") do |value| %> \
+    -local=<%= value %> \
+    <% end %> \
+    2> >(tee -a $LOG_DIR/storage_driver.stderr.log | logger -p user.error -t vcap.storage_driver) \
+    1> >(tee -a $LOG_DIR/storage_driver.stdout.log | logger -t vcap.storage_driver)
+    
+    ;;
+  
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+  echo "Please use start or stop"
+  
+  ;;
+ 
+esac

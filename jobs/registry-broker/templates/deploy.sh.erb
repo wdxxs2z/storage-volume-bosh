@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -ex
+
+# redirect stderr to stdout
+exec 2>&1
+
+JOB_DIR=/var/vcap/jobs/registry-broker
+
+PACKAGES_DIR=/var/vcap/packages
+PATH=$PACKAGES_DIR/cf/bin:$PATH
+PATH=$PACKAGES_DIR/jq/bin:$PATH
+
+CF_ADMIN_USERNAME=<%= p("cf.admin_username") %>
+CF_ADMIN_PASSWORD=<%= p("cf.admin_password") %>
+CF_API_URL=<%= p("cf.system_api_url") %>
+CF_SYSTEM_DOMAIN=<%= p("cf.system_domain") %>
+
+BROKER_NAME=<%= p("nfs_volume_broker.name") %>
+
+function authenticate() {
+  cf api $CF_API_URL <% if p("cf.ha_proxy.skip_cert_verify") %>--skip-ssl-validation<% end %>
+  cf auth $CF_ADMIN_USERNAME $CF_ADMIN_PASSWORD
+}
+
+function register_service_broker() {
+  local results=$(cf curl /v2/service_brokers?q=name:$BROKER_CF_APP_NAME | jq '.total_results | tonumber')
+  local action="create-service-broker"
+
+  if [ $results -eq 1 ]; then
+      action="update-service-broker"
+  fi
+
+  cf $action \
+    $BROKER_NAME \
+    <%= p("nfs_volume_broker.username") %> \
+    <%= p("nfs_volume_broker.password") %> \
+    <%= p("nfs_volume_broker.url") %>
+
+  cf enable-service-access nfs
+}
+
+authenticate
+register_service_broker

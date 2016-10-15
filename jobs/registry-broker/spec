@@ -1,0 +1,40 @@
+---
+name: registry-broker
+
+templates:
+  deploy.sh.erb: bin/run
+
+packages:
+  - cf
+
+properties:
+  cf.admin_username:
+    description: 'Username of the CF admin user'
+  
+  cf.admin_password:
+    description: 'Password of the CF admin user'
+
+  cf.ha_proxy.skip_cert_verify:
+    description: 'Whether to verify SSL certs when making web requests'
+    default: true
+
+  cf.system_api_url:
+    description: "URL of Cloud Foundry API"
+
+  cf.system_domain:
+    description: "Cloud Foundry system domain, used for the Console application's URL"
+
+  nfs_volume_broker.username:
+    description: "basic auth username to verify on incoming requests"
+    default: "admin"
+  
+  nfs_volume_broker.password:
+    description: "basic auth password to verify on incoming requests"
+    default: "admin"
+  
+  nfs_volume_broker.url:
+    description: "nfs service broker url"
+
+  nfs_volume_broker.name:
+    description: "nfs service broker name"
+    default: "nfs-broker"

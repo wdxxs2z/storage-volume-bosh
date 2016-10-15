@@ -1,0 +1,6 @@
+---
+name: nfsbroker
+
+files:
+- nfsbroker/cf
+- nfsbroker/nfsbroker

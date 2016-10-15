@@ -1,0 +1,66 @@
+---
+packages:
+- name: pid_utils
+  version: 1068841499278ac77cf2987117125007c4bd7570
+  fingerprint: 1068841499278ac77cf2987117125007c4bd7570
+  sha1: 15e419695d928b0afd0d16457a75d7ea517046e6
+  dependencies: []
+- name: storage_volume_driver
+  version: 32ac2293dc5de440860f7bef9236f89d29cb6ed0
+  fingerprint: 32ac2293dc5de440860f7bef9236f89d29cb6ed0
+  sha1: fdda1face0a3b3dcb525dca47d1879b24b60c70e
+  dependencies: []
+- name: nfsbroker
+  version: 1c372099c04ba807ed259c7a31dd1068001cc45e
+  fingerprint: 1c372099c04ba807ed259c7a31dd1068001cc45e
+  sha1: 58fa0284b2979f8819f249c8e3fe99b894339882
+  dependencies: []
+- name: cf
+  version: 73f5ae4b85b719ab747ccc226de9e787565140b2
+  fingerprint: 73f5ae4b85b719ab747ccc226de9e787565140b2
+  sha1: 5e85ac0e02a6ce0e0e35066ee6fdf39970d032b6
+  dependencies: []
+- name: debian_nfs_server
+  version: b9635ceaf452b16239b9b6a356cdc9d1c6fa80f5
+  fingerprint: b9635ceaf452b16239b9b6a356cdc9d1c6fa80f5
+  sha1: ceb94d24b8cdf084849ed7fe5a0e7b9e5231dc3d
+  dependencies: []
+- name: jq
+  version: 73fa85174c27983f1b4f1fa307fa126c549cb1d5
+  fingerprint: 73fa85174c27983f1b4f1fa307fa126c549cb1d5
+  sha1: ac2463888777799e882cf13e5008bbd099e254a1
+  dependencies: []
+- name: common
+  version: 8c2d3900a9cfba4d0c3ebdb2dbcf4b790531c09f
+  fingerprint: 8c2d3900a9cfba4d0c3ebdb2dbcf4b790531c09f
+  sha1: 5a3e3c0a55ab27ebf0427a863a8b022e64d9cfca
+  dependencies: []
+jobs:
+- name: nfs_mounter
+  version: e597e616003791ea243cf1d49880a90088c1129e
+  fingerprint: e597e616003791ea243cf1d49880a90088c1129e
+  sha1: 6aea9429953a41eca2155ab2d663a9d3e51b3ed7
+- name: registry-broker
+  version: cbfece7688fccb1490c003e814ac478565a97714
+  fingerprint: cbfece7688fccb1490c003e814ac478565a97714
+  sha1: 233d4b0cf7b284c05c4c3a98a89d1787c703139b
+- name: storage_dirver
+  version: 68d4ab89b7c3bf339897002e87f786bc4cc3c1be
+  fingerprint: 68d4ab89b7c3bf339897002e87f786bc4cc3c1be
+  sha1: 61a6562a81e9394e33c558cdb4d5206c08c20e82
+- name: debian_nfs_server
+  version: 13099c08680423cb750cfa3f1868277d7f9d8631
+  fingerprint: 13099c08680423cb750cfa3f1868277d7f9d8631
+  sha1: 79d0cf45d4feed0d8decfbaca67e5286e8e1c58e
+- name: unregistry-broker
+  version: fae0b4f7bcb6fb4b88856a061597448189f81796
+  fingerprint: fae0b4f7bcb6fb4b88856a061597448189f81796
+  sha1: 9c0b9761548fd2a7896f47b9c2b3bd7ffa58c4a3
+- name: nfs_broker
+  version: fb4dc1af73d6646f948a404d1147825ed9a9b4ee
+  fingerprint: fb4dc1af73d6646f948a404d1147825ed9a9b4ee
+  sha1: 382d5d23c0c7bf563df751697bcd014e5a8a7a1d
+commit_hash: '00000000'
+uncommitted_changes: false
+name: storage-volume-bosh
+version: '2'

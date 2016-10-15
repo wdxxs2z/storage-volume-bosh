@@ -1,0 +1,69 @@
+#!/bin/bash
+
+export NFS_VOLUME_BROKER_JOB_DIR=/var/vcap/jobs/nfs_broker
+
+RUN_DIR=/var/vcap/sys/run/nfs_broker
+LOG_DIR=/var/vcap/sys/log/nfs_broker
+
+export CONFIG_DIR=$NFS_VOLUME_BROKER_JOB_DIR/config
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+PIDFILE=$RUN_DIR/nfs_broker.pid
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "nfs_broker"
+
+    mkdir -p $RUN_DIR
+    chown -R vcap:vcap $RUN_DIR
+
+    echo $$ > $PIDFILE
+
+    mkdir -p $LOG_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    DATA_PATH=<%= p("nfs_volume_broker.dataDir") %>
+    mkdir -p $DATA_PATH
+    chown vcap:vcap $DATA_PATH
+
+    CONFIG_PATH=<%= p("nfs_volume_broker.configPath") %>
+    mkdir -p $CONFIG_PATH
+    chown vcap:vcap $CONFIG_PATH
+
+    ulimit -n 100000
+    
+    chmod +x /var/vcap/packages/nfsbroker/nfsbroker
+
+    exec chpst -u vcap:vcap /var/vcap/packages/nfsbroker/nfsbroker \
+    -configPath=<%= p("nfs_volume_broker.configPath") %> \
+    -dataDir=<%= p("nfs_volume_broker.dataDir") %> \
+    -defaultMountPath=<%= p("nfs_volume_broker.defaultMountPath") %> \
+    -displayName="<%= p("nfs_volume_broker.displayName") %>" \
+    -imageUrl=<%= p("nfs_volume_broker.imageUrl") %> \
+    -listenAddr=<%= p("nfs_volume_broker.listenAddr") %> \
+    -logLevel=<%= p("nfs_volume_broker.logLevel") %> \
+    -password=<%= p("nfs_volume_broker.password") %> \
+    -username=<%= p("nfs_volume_broker.username") %> \
+    -planDesc="<%= p("nfs_volume_broker.planDesc") %>" \
+    -planId=<%= p("nfs_volume_broker.planId") %> \
+    -planName=<%= p("nfs_volume_broker.planName") %> \
+    -remoteInfo=<%= p("nfs_volume_broker.remoteInfo") %> \
+    -remoteMount=<%= p("nfs_volume_broker.remoteMount") %> \
+    -serviceId=<%= p("nfs_volume_broker.serviceId") %> \
+    -serviceName=nfs \
+    -version=<%= p("nfs_volume_broker.version") %> \
+    >>$LOG_DIR/nfs_broker.stdout.log \
+    2>>$LOG_DIR/nfs_broker.stderr.log
+    
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Please use start or stop"
+    ;;
+
+esac
